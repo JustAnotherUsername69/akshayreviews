@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akshay Reviews</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background-color: #0e0e0e;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    input[type="password"], input[type="text"] {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #1e1e1e;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #dashboard {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    #searchResults {
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Akshay Reviews</h1>
+  <div id="login">
+    <input type="password" id="password" placeholder="Enter Password" />
+    <button onclick="login()">Login</button>
+    <p id="loginStatus" style="color: red;"></p>
+  </div>
+  <div id="dashboard">
+    <input type="text" id="searchInput" placeholder="Search movie or show..." />
+    <div id="searchResults"></div>
+  </div>
+
+  <script>
+    const CORRECT_PASSWORD = "akshayonly";
+
+    function login() {
+      const entered = document.getElementById("password").value;
+      if (entered === CORRECT_PASSWORD) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("dashboard").style.display = "flex";
+      } else {
+        document.getElementById("loginStatus").innerText = "Incorrect password!";
+      }
+    }
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value;
+      document.getElementById("searchResults").innerText = query ? `Searching for "${query}"...` : "";
+    });
+  </script>
+</body>
+</html>
+
